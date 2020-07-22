@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intersection Observer API Demo</title>
+  <style>
+    div {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div>test</div>
+  <div id="item">
+    看到此元素时，触发回调
+  </div>
+  <script>
+    let option = {
+      delay: 0,
+      root: null,
+      // 如果rootMargin为0px, 元素距离视窗0px就会触发，如果是100px,距离视窗100px就触发
+      rootMargin: "0px 0px 0px 0px",
+      thresholds: [0],
+      trackVisibility: false
+    }
+    let observer = new IntersectionObserver((entries, observer) => {
+      console.log(entries, observer)
+      entries.forEach(item => {
+        console.log(item)
+        console.log('元素是否可见:', item.isIntersecting)
+      })
+    }, option);
+    let target = document.querySelector('#item');
+    observer.observe(target)
+  </script>
+</body>
+</html>
